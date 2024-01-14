@@ -14,7 +14,7 @@ CREATE TABLE Reader (
     role_id int unsigned not null,
 
     PRIMARY KEY(id)
-);
+) auto_increment=21300000;
 
 CREATE TABLE Admin (
    id int unsigned not null auto_increment,
@@ -24,7 +24,7 @@ CREATE TABLE Admin (
    privilege tinyint unsigned not null,
 
    primary key(id)
-);
+) auto_increment=10000000;
 
 CREATE TABLE Reader_Role (
     id int unsigned not null auto_increment,
@@ -41,8 +41,8 @@ CREATE TABLE Book (
     name varchar(20) not null,
     author varchar(20) not null,
     price	float(2),
-    -- 图书状态默认为0 说明图书在架
-    status tinyint DEFAULT 0,
+    -- 图书状态默认为1 说明图书在架
+    status tinyint unsigned DEFAULT 1,
 
     PRIMARY KEY(id)
 );
