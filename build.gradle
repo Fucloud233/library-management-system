@@ -7,6 +7,10 @@ plugins {
 group = 'com.fucloud'
 version = '0.0.1-SNAPSHOT'
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 java {
     sourceCompatibility = '21'
 }

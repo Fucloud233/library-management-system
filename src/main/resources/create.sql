@@ -28,7 +28,8 @@ CREATE TABLE Admin (
 
 CREATE TABLE Reader_Role (
     id int unsigned not null auto_increment,
-    name varchar(10) not null,
+    -- 必须保证名字不能相同
+    name varchar(10) unique not null ,
     number int not null,
     duration int not null,
 
