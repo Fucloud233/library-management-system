@@ -43,4 +43,10 @@ public class ReaderRoleMapperTest {
         readerRoleMapper.deleteById(studentRole.getId());
     }
 
+    @Test
+    void testGetById() {
+        int id = 6;
+        System.out.println(readerRoleMapper.getById(id));
+    }
+
 }

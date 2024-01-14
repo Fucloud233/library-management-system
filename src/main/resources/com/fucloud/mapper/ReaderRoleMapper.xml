@@ -23,9 +23,17 @@
         </set>
         where id = #{id}
     </update>
+    
+    <sql id="commonSelect">
+        select id, name, number, duration from reader_role
+    </sql>
 
     <!-- 查询所有读者角色（由于数量比较少，因此不需要筛选）-->
     <select id="list" resultType="com.fucloud.pojo.ReaderRole">
-        select id, name, number, duration from reader_role
+        <include refid="commonSelect" />
+    </select>
+    <select id="getById" resultType="com.fucloud.pojo.ReaderRole">
+        <include refid="commonSelect" />
+        where id = #{id}
     </select>
 </mapper>

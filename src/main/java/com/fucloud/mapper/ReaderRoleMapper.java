@@ -10,7 +10,7 @@ public interface ReaderRoleMapper {
     void insert(ReaderRole role);
     void deleteById(Integer id);
     void update(ReaderRole role);
+
     List<ReaderRole> list();
-    // TODO 根据id搜索ReaderRole
-//    ReaderRole getById(Integer id);
+    ReaderRole getById(Integer id);
 }
