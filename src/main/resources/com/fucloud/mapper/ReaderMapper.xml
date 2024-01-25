@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fucloud.mapper.ReaderMapper">
+    <!-- 插入新的读者角色（id是自增不需要插入）-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.fucloud.pojo.Reader">
+        insert into reader (name, phone, role_id)
+        values (#{name}, #{number}, #{duration})
+    </insert>
+
+    <update id="update">
+        update reader
+        <set>
+            <if test="name!=null">name=#{name},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="role_id!=null">role_id=#{role_id},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <sql id="commonSelect">
+        select id, name, phone, role_id from reader
+    </sql>
+
+    <select id="list" resultType="com.fucloud.pojo.Reader">
+        <include refid="commonSelect" />
+    </select>
+</mapper>

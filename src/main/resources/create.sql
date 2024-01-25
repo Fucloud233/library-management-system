@@ -20,6 +20,7 @@ CREATE TABLE Admin (
    id int unsigned not null auto_increment,
    name varchar(30) not null,
    phone varchar(15) not null,
+   password varchar(16) not null,
     -- 1 根管理员 2 超级管理员 3 普通管理员
    privilege tinyint unsigned not null,
 

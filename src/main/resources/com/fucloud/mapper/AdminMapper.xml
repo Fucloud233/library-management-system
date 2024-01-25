@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fucloud.mapper.AdminMapper">
+    <!-- 插入新的读者角色（id是自增不需要插入）-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.fucloud.pojo.Admin">
+        insert into admin (name, phone, password, privilege)
+        values (#{name}, #{number}, #{password}, #{privilege})
+    </insert>
+
+    <delete id="deleteById">
+        delete from admin where id = #{id}
+    </delete>
+
+    <update id="updatePassword">
+        update admin
+        set password = #{password}
+        where id = #{id}
+    </update>
+
+    <sql id="commonSelect">
+        select id, name, phone from admin
+    </sql>
+
+    <select id="list" resultType="com.fucloud.pojo.Admin">
+        <include refid="commonSelect" />
+    </select>
+
+    <select id="get" resultType="com.fucloud.pojo.Admin">
+        <include refid="commonSelect"></include>
+        where id = #{id}
+    </select>
+
+    <select id="getPassword" resultType="String">
+        select password from admin where id = #{id}
+    </select>
+</mapper>

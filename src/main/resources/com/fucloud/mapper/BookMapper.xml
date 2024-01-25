@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fucloud.mapper.BookMapper">
+    <!-- 插入新的读者角色（id是自增不需要插入）-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.fucloud.pojo.Book">
+        insert into book (id, isbn, name, author, price, status)
+        values (#{id}, #{isbn}, #{name}, #{author}, #{price}, #{status})
+    </insert>
+
+    <delete id="deleteById">
+        delete from book where id = #{id}
+    </delete>
+
+    <update id="updateStatus">
+        update book
+        set status = #{status}
+        where id = #{id}
+    </update>
+
+    <sql id="commonSelect">
+        select id, isbn, name, author, price, status  from book
+    </sql>
+
+    <select id="list" resultType="com.fucloud.pojo.Book">
+        <include refid="commonSelect" />
+    </select>
+
+    <select id="get" resultType="com.fucloud.pojo.Book">
+        <include refid="commonSelect" />
+    </select>
+
+    <select id="getById" resultType="com.fucloud.pojo.Book">
+        <include refid="commonSelect" /> where id = #{id}
+    </select>
+</mapper>

@@ -8,6 +8,7 @@ public class Book {
     private Long isbn;
     private String name;
     private String author;
+    // TODO press 出版社信息
     private Double price;
     private Short status;
 }
