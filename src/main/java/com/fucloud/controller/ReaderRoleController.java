@@ -17,26 +17,26 @@ public class ReaderRoleController {
     @GetMapping("/role")
     public Result read() {
         List<ReaderRole> roleList = readerRoleMapper.list();
-        return Result.createNewResult(roleList);
+        return Result.createOk(roleList);
     }
 
     @PostMapping("/role")
     public Result create(@RequestBody ReaderRole role) {
         // 需要验证条件非空 这里可能会出现空值的情况
         readerRoleMapper.insert(role);
-        return Result.createNewResult(null);
+        return Result.createOk(null);
     }
 
     @DeleteMapping("/role/{id}")
     public Result delete(@PathVariable Integer id) {
         readerRoleMapper.deleteById(id);
-        return Result.createNewResult(null);
+        return Result.createOk(null);
     }
 
     @PutMapping("/role")
     public Result update(@RequestBody ReaderRole role) {
         readerRoleMapper.update(role);
-        return Result.createNewResult(null);
+        return Result.createOk(null);
     }
 
 }

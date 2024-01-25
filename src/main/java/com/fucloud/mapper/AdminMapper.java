@@ -13,9 +13,9 @@ public interface AdminMapper {
 
     String getPassword(Integer id);
 
-    void updatePassword(String password);
+    void updatePassword(Integer id, String password);
 
-    void insert();
+    void insert(Admin admin);
 
     void deleteById(Integer id);
 }
