@@ -11,6 +11,10 @@ public interface ReaderMapper {
 
     void update(Reader reader);
 
+    Integer count();
+
+    Integer countWithCondition(Reader reader);
+
     List<Reader> list();
 
     List<Reader> query(Reader reader, Integer pageNum, Integer pageSize);

@@ -51,6 +51,22 @@
             <if test="reader.phone!=null">and phone like CONCAT('%',#{reader.phone},'%')</if>
             <if test="reader.role.id!=null">and role_id=#{reader.role.id}</if>
         </where>
+        order by reader.id
+        limit #{pageNum}, #{pageSize}
+    </select>
+
+    <select id="count" resultType="Integer">
+        select count(*) from reader
+    </select>
+
+    <select id="countWithCondition" resultType="Integer">
+        select count(*) from reader
+        <where>
+            <if test="id!=null">and id = #{id}</if>
+            <if test="name!=null">and name like CONCAT('%',#{name},'%')</if>
+            <if test="phone!=null">and phone like CONCAT('%',#{phone},'%')</if>
+            <if test="role.id!=null">and role_id=#{role.id}</if>
+        </where>
     </select>
 
 </mapper>
