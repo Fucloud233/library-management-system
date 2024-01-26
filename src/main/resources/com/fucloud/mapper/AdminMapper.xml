@@ -28,7 +28,7 @@
         <include refid="commonSelect" />
     </select>
 
-    <select id="get" resultType="com.fucloud.pojo.Admin">
+    <select id="getById" resultType="com.fucloud.pojo.Admin">
         <include refid="commonSelect"></include>
         where id = #{id}
     </select>

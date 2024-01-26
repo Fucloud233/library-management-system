@@ -6,6 +6,7 @@ import com.fucloud.pojo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,18 @@ public class AdminController {
 
     @PostMapping("/admin/login")
     public Result login(@RequestBody Map<String, Object> info) {
-        return Result.createOk(this.checkPassword(info));
+        Integer id = (Integer) info.get("id");
+        String password = (String) info.get("password");
+
+        Map<String, Object> result = new HashMap<>();
+        boolean flag = this.checkPassword(id, password);
+        result.put("flag", flag);
+        if(flag) {
+            Admin adminInfo = adminMapper.getById(id);
+            result.put("info", adminInfo);
+        }
+
+        return Result.createOk(result);
     }
 
     @PostMapping("/admin")
@@ -34,12 +46,13 @@ public class AdminController {
 
     @PutMapping("/admin/password")
     public Result updatePassword(@RequestBody Map<String, Object> info) {
-        if(!this.checkPassword(info)) {
+        Integer id = (Integer) info.get("id");
+        String password = (String) info.get("password");
+        if(!this.checkPassword(id, password)) {
             // TODO 处理异常错误
             return Result.createError("密码错误");
         }
 
-        Integer id = (Integer) info.get("id");
         String newPassword = (String) info.get("newPassword");
         adminMapper.updatePassword(id, newPassword);
         return Result.createOk(null);
@@ -50,9 +63,13 @@ public class AdminController {
         return adminMapper.list();
     }
 
-    public boolean checkPassword(Map<String, Object> info) {
-        String trueString = adminMapper.getPassword((Integer) info.get("id"));
-        return trueString.equals(info.get("password"));
+    public boolean checkPassword(Integer id, String password) {
+        String truePassword = adminMapper.getPassword(id);
+        if(truePassword == null) {
+            return false;
+        }
+
+        return truePassword.equals(password);
     }
 }
 

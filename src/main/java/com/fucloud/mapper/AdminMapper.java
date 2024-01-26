@@ -9,7 +9,7 @@ import java.util.List;
 public interface AdminMapper {
     List<Admin> list();
 
-    Admin get(Integer id);
+    Admin getById(Integer id);
 
     String getPassword(Integer id);
 
