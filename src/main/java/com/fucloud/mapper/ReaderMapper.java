@@ -12,4 +12,6 @@ public interface ReaderMapper {
     void update(Reader reader);
 
     List<Reader> list();
+
+    List<Reader> query(Reader reader, Integer pageNum, Integer pageSize);
 }

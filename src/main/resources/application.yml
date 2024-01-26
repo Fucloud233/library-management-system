@@ -4,3 +4,6 @@ spring:
         url: "jdbc:mysql://localhost/library_management?useUnicode=true&characterEncoding=utf8"
         username: "root"
         password: "123456"
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true

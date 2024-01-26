@@ -27,4 +27,30 @@
     <select id="list" resultType="com.fucloud.pojo.Reader">
         <include refid="commonSelect" />
     </select>
+
+    <!-- 读者与其身份多表查询 -->
+    <resultMap id="readerMap" type="com.fucloud.pojo.Reader">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="phone" column="phone"></result>
+
+        <association property="role" javaType="com.fucloud.pojo.ReaderRole">
+            <id property="id" column="rid"></id>
+            <result property="name" column="rname"></result>
+        </association>
+    </resultMap>
+
+    <select id="query" resultMap="readerMap">
+        <!-- 这里需要起别名，才能被resultMap捕获 -->
+        select reader.id, reader.name, reader.phone, role.id as rid, role.name as rname
+        from reader, reader_role as role
+        <where>
+            reader.role_id = role.id
+            <if test="reader.id!=null">and reader.id = #{reader.id}</if>
+            <if test="reader.name!=null">and reader.name like CONCAT('%',#{reader.name},'%')</if>
+            <if test="reader.phone!=null">and phone like CONCAT('%',#{reader.phone},'%')</if>
+            <if test="reader.role.id!=null">and role_id=#{reader.role.id}</if>
+        </where>
+    </select>
+
 </mapper>
