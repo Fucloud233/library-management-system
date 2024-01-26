@@ -14,9 +14,15 @@ public class ReaderRoleController {
     @Autowired
     ReaderRoleMapper readerRoleMapper;
 
-    @GetMapping("/role")
-    public Result read() {
+    @GetMapping("/role/list")
+    public Result list() {
         List<ReaderRole> roleList = readerRoleMapper.list();
+        return Result.createOk(roleList);
+    }
+
+    @GetMapping("/role/list/option")
+    public Result listOptions() {
+        List<ReaderRole> roleList = readerRoleMapper.listOptions();
         return Result.createOk(roleList);
     }
 

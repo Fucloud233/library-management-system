@@ -12,5 +12,6 @@ public interface ReaderRoleMapper {
     void update(ReaderRole role);
 
     List<ReaderRole> list();
+    List<ReaderRole> listOptions();
     ReaderRole getById(Integer id);
 }

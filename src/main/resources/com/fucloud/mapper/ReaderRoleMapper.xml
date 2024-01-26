@@ -32,6 +32,10 @@
     <select id="list" resultType="com.fucloud.pojo.ReaderRole">
         <include refid="commonSelect" />
     </select>
+    <select id="listOptions" resultType="com.fucloud.pojo.ReaderRole">
+        select id, name from reader_role
+    </select>
+
     <select id="getById" resultType="com.fucloud.pojo.ReaderRole">
         <include refid="commonSelect" />
         where id = #{id}
